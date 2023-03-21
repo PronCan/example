@@ -8,18 +8,19 @@
         </li>
       </ul>
 
-    {{show}}
-        <DetailPopVue :state="show"/>
+      <div 
+      class="pop" 
+      :class="{active:isActive}" 
+      v-html="detail" 
+      @click="close"></div>
+
     </div>
 </template>
 
 <script>
-import DetailPopVue from '../components/DetailPop.vue';
 
 export default {
-    components:{
-        DetailPopVue
-    },
+   
     data(){
         return{
             data : [
@@ -34,19 +35,18 @@ export default {
                 {id:8, name:'이미지5' ,src:"./img/09.jpg"},
                 {id:9, name:'이미지5' ,src:"./img/10.jpg"},
             ],
-            show:'asdf'
+            detail:'',
+            isActive:false
         }        
     },
-    computed () {
-        console.log(this.props)
-    },
     methods:{
-        open(n){
-            // this.isActice = true;
-            // this.detailTag = this.data[n].src;
-            this.show = n;
-            
-            
+        open(id){
+            this.isActive = true;
+            this.detail = `<img src=${this.data[id].src}>`;            
+        },
+        close(e){
+            if(e.target.nodeName != 'IMG')
+            this.isActive = false;
         }
     }
 }
