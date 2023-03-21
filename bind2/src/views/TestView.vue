@@ -2,7 +2,7 @@
     <div class="test">
       <h1>Photo List</h1>
       <ul class="list">
-        <ItemsVue />
+        <ItemList />
         <!-- <li v-for="v in data" :key="v.id" @click="()=>open(v.id)">
             <img :src="v.src">
             <p>{{v.name}}</p>
@@ -19,10 +19,10 @@
 </template>
 
 <script>
-import ItemsVue from '../components/Items.vue'
+import ItemList from '../components/Items.vue'
 export default {
    components: {
-    ItemsVue
+    ItemList
    },
     data(){
         return{
