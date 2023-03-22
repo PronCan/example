@@ -2,27 +2,26 @@
     <div class="test">
       <h1>Photo List</h1>
       <ul class="list">
-        <ItemList />
+        <ItemList v-for="v in data" :key="v.id" :data="v" @click="()=>open(v.id)"/>
         <!-- <li v-for="v in data" :key="v.id" @click="()=>open(v.id)">
             <img :src="v.src">
             <p>{{v.name}}</p>
         </li> -->
       </ul>
 
-      <div 
-      class="pop" 
-      :class="{active:isActive}" 
-      v-html="detail" 
-      @click="close"></div>
-
+      <DetailView :is="isActive" :de="detail" @child="close"/>
+      
     </div>
 </template>
 
 <script>
+import DetailView from '../components/DetailView.vue'
 import ItemList from '../components/Items.vue'
+
 export default {
    components: {
-    ItemList
+    ItemList,
+    DetailView
    },
     data(){
         return{
@@ -47,8 +46,8 @@ export default {
             this.isActive = true;
             this.detail = `<img src=${this.data[id].src}>`;            
         },
-        close(e){
-            if(e.target.nodeName != 'IMG')
+        close(){
+            // if(e.target.nodeName != 'IMG')
             this.isActive = false;
         }
     }
@@ -66,14 +65,5 @@ ul{list-style-type: none; margin:0; padding:0;}
             img{width:100%;}
         }
     }
-    .pop{
-        width:100%; height:100%;
-        position:fixed; left:0; top:0; 
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: rgba(0,0,0,0.6);
-        display: none;
-        &.active{display:flex;}
-    }
+    
 </style>
