@@ -1,18 +1,56 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <NewsList :data="NewsWrite"/>
+    <NewsWrite @send="WriteContent"/>
   </div>
+  <NewsView />
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import NewsList from '@/components/NewsList.vue'
+import NewsWrite from '@/components/NewsWrite.vue'
+import NewsView from '@/components/NewsView.vue'
 
 export default {
   name: 'HomeView',
   components: {
-    HelloWorld
+    NewsList, NewsWrite, NewsView
+  },
+  data() {
+    return {
+      NewsWrite: {
+        name: '',
+        content: ''
+      }
+    }
+  },
+  methods: {
+    addData(value) {
+      console.log(value)
+      this.NewsWrite = value;
+    },
+    open(e) {
+      e.preventDefault();
+      this.isActive = true;
+      this.detail = 'aa';
+    },
+    close() {
+        this.isActive = false;
+    }
   }
 }
 </script>
+
+<style>
+.home {
+  display: flex;
+  justify-content: center;
+  margin: 0 20%;
+}
+.line {
+  width: 2px;
+  background-color: #000;
+  height: 300px
+}
+</style>
