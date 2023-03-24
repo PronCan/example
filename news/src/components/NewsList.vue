@@ -1,7 +1,7 @@
 <template>
     <div class="def_wrap">
         <div>list</div>
-        <button id="add">+</button>
+        <button id="add" @click="newsWrite">+</button>
         <div class="list">
             <ul>
                 <li>2023.03</li>
@@ -22,6 +22,11 @@ export default {
     updated() {
         console.log(this.data)
     },
+    methods: {
+        newsWrite() {
+            this.isActive = !this.isActive
+        }
+    }
 }
 
 </script>
