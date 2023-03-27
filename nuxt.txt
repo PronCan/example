@@ -1,0 +1,28 @@
+nvm install (18.x)
+
+npx create-nuxt-app nuxt-test
+
+
+
+ npm i sass sass-loader
+
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+nuxt / scss 세팅
+npm uninstall webpack
+npm install webpack@^4.0.0
+
+npm i sass@1.26.5 sass-loader@8.0.2 -D
+npm i @nuxtjs/style-resources -D
+
+
+//nuxt.config.js
+
+css: [
+    '@/assets/css/main.scss'
+  ],
+  buildModules: [
+    '@nuxtjs/style-resources'
+  ],
+  styleResources: {
+    scss: '@/assets/css/*.scss'
+  },
